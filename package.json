@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "server": "cd packages/server && yarn dev",
+    "client": "cd packages/client && yarn start",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "precommit": "lint-staged",
+    "lint": "eslint ./packages --ext=js, --ext=jsx --ignore-pattern node_modules",
+    "lint:fix": "eslint ./packages --ext=js, --ext=jsx --ignore-pattern node_modules --fix"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "yarn lint:fix",
+      "git add"
+    ]
+  }
+}
