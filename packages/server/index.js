@@ -26,6 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/auth/google', authRoutes);
 app.use('/api/users', userRoutes);
+
 mongoose
 	.connect(
 		process.env.MONGO_URI,

@@ -15,21 +15,24 @@ passport.use(
 		},
 		async (accessToken, refreshToken, profile, done) => {
 			// TODO: write tests for this
-			const user = await User.findOne({ googleId: profile.id });
-			// TODO: handle error
-			if (user) {
-				done(null, user);
-			} else {
-				try {
-					const newUser = await new User({ googleId: profile.id }).save();
-					done(null, newUser);
-				} catch (e) {}
+			try {
+				const user = await User.findOne({ googleId: profile.id });
+				if (user) {
+					done(null, user);
+				} else {
+					try {
+						const newUser = await new User({ googleId: profile.id }).save();
+						done(null, newUser);
+					} catch (e) {
+						done(`cannot create new user ${e.message}`, null);
+					}
+				}
+			} catch (e) {
+				done(`cannot find user with id ${profile.id} ${e.message}`, null);
 			}
 		}
 	)
 );
-
-// TODO: dig deeper into passport
 
 // TODO: handle errors
 passport.serializeUser((user, done) => {
@@ -37,9 +40,15 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (userId, done) => {
-	const user = await User.findById(userId);
-	if (user) {
-		done(null, user);
+	try {
+		const user = await User.findById(userId);
+		if (user) {
+			done(null, user);
+		} else {
+			done(null, {});
+		}
+	} catch (e) {
+		done(`cannot find user with id ${userId} ${e.message}`, null);
 	}
 });
 
