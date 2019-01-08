@@ -27,7 +27,6 @@ passport.use(
 		}
 	)
 );
-
 // TODO: handle errors
 passport.serializeUser((user, done) => {
 	done(null, user.id);
