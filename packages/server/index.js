@@ -33,9 +33,7 @@ mongoose
 	)
 	.then(() => console.log('MongoDB database connected..'))
 	.catch(err =>
-		console.log(
-			`Errors occurred when tried to connect the database dsadasdasdsadsadsadas. ${err}`
-		)
+		console.log(`Errors occurred when tried to connect the database. ${err}`)
 	);
 
 const PORT = process.env.PORT || 5000;
