@@ -3,11 +3,11 @@ import Home from '../pages/Home';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 const Routes = () => (
-   <BrowserRouter>
-      <Switch>
-         <Route exact path='/' component={Home}/>
-      </Switch>
-   </BrowserRouter>
+	<BrowserRouter>
+		<Switch>
+			<Route exact path='/' component={Home} />
+		</Switch>
+	</BrowserRouter>
 );
 
 export default Routes;
