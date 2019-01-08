@@ -26,9 +26,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/auth/google', authRoutes);
 app.use('/api/users', userRoutes);
+
+const mongoUrl =
+	process.env.NODE_ENV === 'development'
+		? process.env.MONGO_URI
+		: process.env.MONGO_TEST_URI;
+
 mongoose
 	.connect(
-		process.env.MONGO_URI,
+		mongoUrl,
 		{ useNewUrlParser: true }
 	)
 	.then(() => console.log('MongoDB database connected..'))

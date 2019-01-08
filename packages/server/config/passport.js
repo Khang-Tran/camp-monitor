@@ -16,7 +16,6 @@ passport.use(
 		async (accessToken, refreshToken, profile, done) => {
 			// TODO: write tests for this
 			const user = await User.findOne({ googleId: profile.id });
-			// TODO: handle error
 			if (user) {
 				done(null, user);
 			} else {
@@ -28,8 +27,6 @@ passport.use(
 		}
 	)
 );
-
-// TODO: dig deeper into passport
 
 // TODO: handle errors
 passport.serializeUser((user, done) => {
