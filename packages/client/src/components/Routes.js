@@ -1,11 +1,11 @@
 import React from 'react';
-import Home from '../pages/Home';
+import Landing from '../pages/Landing';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 const Routes = () => (
 	<BrowserRouter>
 		<Switch>
-			<Route exact path='/' component={Home} />
+			<Route exact path='/' component={Landing} />
 		</Switch>
 	</BrowserRouter>
 );
